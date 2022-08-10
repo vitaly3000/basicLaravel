@@ -16,6 +16,13 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class, 'index']);
 
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],function()
+{
+    Route::group(['namespace' => 'Post'],function() {
+        Route::get('/post', IndexController::class)->name('admin.post.index');
+    });
+});
+
 Route::group(['namespace' => 'App\Http\Controllers\Post'],function()
 {
     Route::get('/posts', IndexController::class)->name('posts.index');
